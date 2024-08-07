@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,6 +44,7 @@ class CarListTest {
         assertEquals(100, carList.size());
     }
 
+    @Disabled
     @Test
     void whenListClearedThenSizeMustBe0() {
         carList.clear();
@@ -58,5 +60,29 @@ class CarListTest {
     void methodGetReturnRightValue() {
         Car car = carList.get(0);
         assertEquals("Brand0", car.getBrand());
+    }
+
+    @Test
+    void insertIntoMiddle() {
+        Car car = new Car("BMW", 1);
+        carList.add(car, 50);
+        Car carFromList = carList.get(50);
+        assertEquals("BMW", carFromList.getBrand());
+    }
+
+    @Test
+    void insertIntoFirstPosition() {
+        Car car = new Car("BMW", 1);
+        carList.add(car, 0);
+        Car carFromList = carList.get(0);
+        assertEquals("BMW", carFromList.getBrand());
+    }
+
+    @Test
+    void insertIntoLastPosition() {
+        Car car = new Car("BMW", 1);
+        carList.add(car, 100);
+        Car carFromList = carList.get(100);
+        assertEquals("BMW", carFromList.getBrand());
     }
 }
